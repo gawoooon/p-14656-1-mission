@@ -2,6 +2,7 @@ package com.back.domain.post.post.service;
 
 import com.back.domain.post.post.document.Post;
 import com.back.domain.post.post.repository.PostRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +18,9 @@ public class PostService {
     public Post create(String title, String content, String author) {
         Post post = new Post(title, content, author);
         return postRepository.save(post);
+    }
+
+    public List<Post> findAll() {
+        return postRepository.findAll();
     }
 }
