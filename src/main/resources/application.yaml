@@ -4,6 +4,12 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  spring:
+    profiles:
+      active: dev
 logging:
   level:
     com:
