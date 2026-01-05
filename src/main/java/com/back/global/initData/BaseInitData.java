@@ -20,6 +20,7 @@ public class BaseInitData {
         return args -> {
             work1();
             work2();
+            work3();
         };
     }
 
@@ -43,5 +44,31 @@ public class BaseInitData {
         for (Post post : postService.findAll()) {
             log.debug("Existing Post: {}", post);
         }
+    }
+
+    private void work3(){
+        // 정확한 ID로 시도
+        String testId1 = "j0YDjZsBjAGckH4-56gK";
+        log.debug("ID {} 로 Post 단건 조회", testId1);
+        postService.findById(testId1).ifPresentOrElse(
+                post -> log.debug("조회된 Post: {}", post),
+                () -> log.debug("ID {} 로 조회한 결과가 없습니다.", testId1)
+        );
+
+        // 부분 조회로 시도
+        String testId2 = "YDjZsBjAGckH4";
+        log.debug("ID {} 로 Post 단건 조회", testId2);
+        postService.findById(testId2).ifPresentOrElse(
+                post -> log.debug("조회된 Post: {}", post),
+                () -> log.debug("ID {} 로 조회한 결과가 없습니다.", testId2)
+        );
+
+        // 존재하지 않는 ID로 시도
+        String testId3 = "nonExistingId";
+        log.debug("ID {} 로 Post 단건 조회", testId3);
+        postService.findById(testId3).ifPresentOrElse(
+                post -> log.debug("조회된 Post: {}", post),
+                () -> log.debug("ID {} 로 조회한 결과가 없습니다.", testId3)
+        );
     }
 }

@@ -3,6 +3,7 @@ package com.back.domain.post.post.service;
 import com.back.domain.post.post.document.Post;
 import com.back.domain.post.post.repository.PostRepository;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,9 @@ public class PostService {
 
     public List<Post> findAll() {
         return postRepository.findAll();
+    }
+
+    public Optional<Post> findById(String id) {
+        return postRepository.findById(id);
     }
 }
