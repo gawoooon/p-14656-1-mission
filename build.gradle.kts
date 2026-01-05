@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "4.0.1"
     id("io.spring.dependency-management") version "1.1.7"
+    kotlin("jvm")
 }
 
 group = "com"
@@ -24,6 +25,9 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-data-elasticsearch-test")
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation(kotlin("stdlib-jdk8"))
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 }
 
 tasks.withType<Test> {
