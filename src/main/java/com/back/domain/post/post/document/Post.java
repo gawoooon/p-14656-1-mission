@@ -1,12 +1,14 @@
 package com.back.domain.post.post.document;
 
 import java.time.OffsetDateTime;
+import lombok.Getter;
 import org.springframework.data.annotation.*;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+@Getter
 @Document(indexName = "posts")
 public class Post {
     @Id

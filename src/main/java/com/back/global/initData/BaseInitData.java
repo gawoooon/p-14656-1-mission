@@ -46,29 +46,18 @@ public class BaseInitData {
         }
     }
 
+
     private void work3(){
-        // 정확한 ID로 시도
-        String testId1 = "j0YDjZsBjAGckH4-56gK";
-        log.debug("ID {} 로 Post 단건 조회", testId1);
-        postService.findById(testId1).ifPresentOrElse(
-                post -> log.debug("조회된 Post: {}", post),
-                () -> log.debug("ID {} 로 조회한 결과가 없습니다.", testId1)
-        );
+        log.debug("Post 단건 조회");
 
-        // 부분 조회로 시도
-        String testId2 = "YDjZsBjAGckH4";
-        log.debug("ID {} 로 Post 단건 조회", testId2);
-        postService.findById(testId2).ifPresentOrElse(
-                post -> log.debug("조회된 Post: {}", post),
-                () -> log.debug("ID {} 로 조회한 결과가 없습니다.", testId2)
-        );
+        // 모든 Post의 ID를 이용해 단건 조회 수행
+        for (Post post : postService.findAll()) {
+            Post fetchedPost = postService.findById(post.getId());
+            log.debug("조회된 Post: {}", fetchedPost);
+        }
 
-        // 존재하지 않는 ID로 시도
-        String testId3 = "nonExistingId";
-        log.debug("ID {} 로 Post 단건 조회", testId3);
-        postService.findById(testId3).ifPresentOrElse(
-                post -> log.debug("조회된 Post: {}", post),
-                () -> log.debug("ID {} 로 조회한 결과가 없습니다.", testId3)
-        );
+        // 존재하지 않는 ID로 조회 시도
+        String nonExistentId = "non-existent-id";
+        postService.findById(nonExistentId);
     }
 }
